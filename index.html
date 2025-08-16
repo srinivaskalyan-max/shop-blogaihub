@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shirt Sales Page</title>
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --text:#ffffff;
+    --card-bg:rgba(0,0,0,0.6);
+    --header-bg:rgba(0,0,0,0.7);
+    --glow:rgba(255,140,0,0.4);
+    --btn-grad-start:#ff8a00;
+    --btn-grad-end:#e52e71;
+  }
+
+  *{margin:0; padding:0; box-sizing:border-box}
+  body{
+    font-family:'Poppins',sans-serif;
+    color:var(--text);
+    background:#000;
+    overflow-x:hidden;
+  }
+
+  .background{
+    background:url('back.png') no-repeat center center fixed;
+    background-size:cover;
+    position:fixed; inset:0;
+    z-index:-1;
+    transition:opacity .3s ease, filter .3s ease;
+  }
+  body.scrolled .background{opacity:.85; filter:contrast(0.95) saturate(1.05)}
+
+  header{
+    position:sticky; top:0; z-index:100;
+    background:var(--header-bg);
+    backdrop-filter:blur(6px);
+    padding:14px 5%;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,.35);
+  }
+  header h1{font-size:24px}
+  header p{font-size:14px; opacity:.85}
+
+  .container{padding:34px 5%}
+  .products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:28px;
+  }
+
+  .product{
+    background:var(--card-bg);
+    border-radius:16px;
+    padding:20px;
+    text-align:center;
+    backdrop-filter:blur(5px);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .product:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 42px var(--glow);
+  }
+
+  .product img{
+    width:100%;
+    max-width:240px;
+    border-radius:12px;
+    animation:float 3s ease-in-out infinite;
+    transition:transform .25s ease;
+  }
+  .product:hover img{transform:scale(1.06)}
+  @keyframes float{0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)}}
+
+  .product h2{margin:14px 0 6px; font-size:18px}
+  .price{font-size:16px; margin:4px 0;}
+  .price .old{text-decoration:line-through; opacity:.6; margin-right:8px}
+  .rating{font-size:14px; color:gold; margin-bottom:10px}
+
+  .btn{
+    display:inline-block;
+    margin-top:10px;
+    padding:10px 20px;
+    background:linear-gradient(90deg,var(--btn-grad-start),var(--btn-grad-end));
+    color:#fff; text-decoration:none; border-radius:26px; font-weight:700;
+    transition:transform .18s ease;
+  }
+  .btn:hover{transform:scale(1.08)}
+
+  @media (max-width:700px){
+    header h1{font-size:20px}
+    header p{font-size:12px}
+    .btn{width:100%; padding:12px}
+  }
+</style>
+</head>
+<body>
+
+<div class="background"></div>
+
+<header>
+  <h1>Exclusive Shirt & Pant Collection</h1>
+  <p>Scroll down to explore our best designs</p>
+</header>
+
+<div class="container">
+  <div id="products" class="products">
+
+    <div class="product">
+      <img src="GAP Plane Blue Shirt.png" alt="GAP Plain Blue Shirt">
+      <h2>GAP Plain Blue Shirt</h2>
+      <p class="price"><span class="old">$49.99</span> $29.99</p>
+      <p class="rating">⭐⭐⭐⭐☆</p>
+      <p>Breathable cotton fabric, perfect for daily casual wear.</p>
+      <a href="https://amzn.to/41BSXTO" class="btn" target="_blank">Get This</a>
+    </div>
+
+    <div class="product">
+      <img src="White Solid.png" alt="White Solid Shirt">
+      <h2>White Solid Shirt</h2>
+      <p class="price"><span class="old">$59.99</span> $34.99</p>
+      <p class="rating">⭐⭐⭐⭐⭐</p>
+      <p>Slim fit, wrinkle-resistant design for a crisp look all day.</p>
+      <a href="https://amzn.to/4oFaYdQ" class="btn" target="_blank">Get This</a>
+    </div>
+
+    <div class="product">
+      <img src="SNITCH Plane Brown Shirt.png" alt="SNITCH Plane Brown Shirt">
+      <h2>SNITCH Plane Brown Shirt</h2>
+      <p class="price"><span class="old">$54.99</span> $31.99</p>
+      <p class="rating">⭐⭐⭐⭐☆</p>
+      <p>Timeless brown shade with soft washed finish for comfort.</p>
+      <a href="https://amzn.to/4lGnqre" class="btn" target="_blank">Get This</a>
+    </div>
+
+    <div class="product">
+      <img src="Plain Baby Pink Shirt.png" alt="Plain Baby Pink Shirt">
+      <h2>Plain Baby Pink Shirt</h2>
+      <p class="price"><span class="old">$64.99</span> $39.99</p>
+      <p class="rating">⭐⭐⭐⭐⭐</p>
+      <p>Premium weave fabric, stylish and comfortable for office wear.</p>
+      <a href="https://amzn.to/4fFBFe9" class="btn" target="_blank">Get This</a>
+    </div>
+
+    <div class="product">
+      <img src="Luxury Blue Shirt.png" alt="Luxury Blue Shirt">
+      <h2>Luxury Blue Shirt</h2>
+      <p class="price"><span class="old">$69.99</span> $42.99</p>
+      <p class="rating">⭐⭐⭐⭐⭐</p>
+      <p>Rich blue color, soft texture, and all-day comfort.</p>
+      <a href="https://amzn.to/46YrYWa" class="btn" target="_blank">Get This</a>
+    </div>
+
+    <div class="product">
+      <img src="Trendy Red Shirt.png" alt="Trendy Red Shirt">
+      <h2>Trendy Red Shirt</h2>
+      <p class="price"><span class="old">$59.99</span> $33.99</p>
+      <p class="rating">⭐⭐⭐⭐☆</p>
+      <p>Bold red color with airy breathable material.</p>
+      <a href="https://amzn.to/45iOWGd" class="btn" target="_blank">Get This</a>
+    </div>
+
+    <div class="product">
+      <img src="Lycra Track Pants.png" alt="Lycra Track Pants">
+      <h2>Lycra Track Pants</h2>
+      <p class="price"><span class="old">$59.99</span> $33.99</p>
+      <p class="rating">⭐⭐⭐⭐☆</p>
+      <p>Stretchable Lycra fabric, lightweight and perfect for workouts.</p>
+      <a href="https://amzn.to/46TKcrM" class="btn" target="_blank">Get This</a>
+    </div>
+
+    <div class="product">
+      <img src="Light Green Solid Tapered Fit.png" alt="Light Green Solid Tapered Fit">
+      <h2>Light Green Tapered Fit</h2>
+      <p class="price"><span class="old">$59.99</span> $33.99</p>
+      <p class="rating">⭐⭐⭐⭐☆</p>
+      <p>Modern tapered fit with a refreshing light green color.</p>
+      <a href="https://amzn.to/45TBF76" class="btn" target="_blank">Get This</a>
+    </div>
+
+    <div class="product">
+      <img src="Dark Blue Relaxed fit pant.png" alt="Dark Blue Relaxed Fit Pant">
+      <h2>Dark Blue Relaxed Fit Pant</h2>
+      <p class="price"><span class="old">$59.99</span> $33.99</p>
+      <p class="rating">⭐⭐⭐⭐☆</p>
+      <p>Comfort fit pant with deep navy color, casual yet classy.</p>
+      <a href="https://amzn.to/45xhIlb" class="btn" target="_blank">Get This</a>
+    </div>
+
+    <div class="product">
+      <img src="Brown Slim Fit pant.png" alt="Brown Slim Fit Pant">
+      <h2>Brown Slim Fit Pant</h2>
+      <p class="price"><span class="old">$59.99</span> $33.99</p>
+      <p class="rating">⭐⭐⭐⭐☆</p>
+      <p>Sharp slim fit with versatile brown shade, great for office & casual.</p>
+      <a href="https://amzn.to/41LCNHr" class="btn" target="_blank">Get This</a>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
