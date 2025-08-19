@@ -88,14 +88,50 @@
     background:linear-gradient(90deg,var(--btn-grad-start),var(--btn-grad-end));
     color:#fff; text-decoration:none; border-radius:26px; font-weight:700;
     transition:transform .18s ease;
+    cursor:pointer;
   }
   .btn:hover{transform:scale(1.08)}
 
-  @media (max-width:700px){
-    header h1{font-size:20px}
-    header p{font-size:12px}
-    .btn{width:100%; padding:12px}
+  /* Modal Popup */
+  .modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.7);
+    backdrop-filter:blur(4px);
+    z-index:1000;
+    align-items:center;
+    justify-content:center;
   }
+  .modal-content{
+    background:#111;
+    padding:25px;
+    border-radius:18px;
+    text-align:center;
+    max-width:340px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.6);
+    animation:pop .3s ease;
+  }
+  @keyframes pop{0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}
+  .modal h2{
+    margin-bottom:12px;
+    font-size:20px;
+    color:#ffcc00;
+  }
+  .modal p{margin-bottom:20px; font-size:15px; color:#ddd}
+  .modal button{
+    margin:6px;
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+  }
+  .modal .india{background:#28a745; color:#fff;}
+  .modal .india:hover{background:#218838;}
+  .modal .other{background:#007bff; color:#fff;}
+  .modal .other:hover{background:#0056b3;}
 </style>
 </head>
 <body>
@@ -107,103 +143,146 @@
   <p>Scroll down to explore our best designs</p>
 </header>
 
-<div class="container">
+<div class="container"> 
   <div id="products" class="products">
 
     <div class="product">
       <img src="GAP Plane Blue Shirt.png" alt="GAP Plain Blue Shirt">
       <h2>GAP Plain Blue Shirt</h2>
-      <p class="price"><span class="old">$29.99</span> $22.73</p>
       <p class="rating">⭐⭐⭐⭐☆</p>
-      <p>Breathable cotton fabric, perfect for daily casual wear.</p>
-      <a href="https://amzn.to/41BSXTO" class="btn" target="_blank">Get This</a>
+      <a href="#" class="btn" onclick="openPopup('https://amzn.to/41BSXTO','https://fas.st/kdtCRm')">Get This</a>
     </div>
 
     <div class="product">
       <img src="White Solid.png" alt="White Solid Shirt">
       <h2>White Solid Shirt</h2>
-      <p class="price"><span class="old">$20.11</span> $17.11</p>
       <p class="rating">⭐⭐⭐⭐⭐</p>
-      <p>Slim fit, wrinkle-resistant design for a crisp look all day.</p>
-      <a href="https://amzn.to/4oFaYdQ" class="btn" target="_blank">Get This</a>
+      <a href="#" class="btn" onclick="openPopup('https://amzn.to/4oFaYdQ','https://global-link.com/white-solid')">Get This</a>
+    </div>
+
+    <div class="product">
+      <img src="Cream colour.png" alt="Cream colour">
+      <h2>Cream colour</h2>
+      <p class="rating">⭐⭐⭐⭐☆</p>
+      <a href="#" class="btn" onclick="openPopup('https://amzn.to/45Gfb8y','https://rzekl.com/g/1e8d11449480c609efd416525dc3e8/?ulp=https%3A%2F%2Fwww.aliexpress.us%2Fitem%2F3256807300401025.html&subid=Shirts+vin')">Get This</a>
+    </div>
+
+    <div class="product">
+      <img src="denim shirt.png" alt="Denim Shirt">
+      <h2>Denim Shirt</h2>
+      <p class="rating">⭐⭐⭐☆☆</p>
+      <a href="#" class="btn" onclick="openPopup('https://amzn.to/4msIaDS','https://rzekl.com/g/1e8d11449480c609efd416525dc3e8/?ulp=https%3A%2F%2Fwww.aliexpress.us%2Fitem%2F3256805649720186.html&subid=Shirts+vintage')">Get This</a>
+    </div>
+
+    <div class="product">
+      <img src="Olive Green.png" alt="Olive Green">
+      <h2>Olive Green</h2>
+      <p class="rating">⭐⭐⭐⭐⭐</p>
+      <a href="#" class="btn" onclick="openPopup('https://amzn.to/4mrHdf8','https://rzekl.com/g/1e8d11449480c609efd416525dc3e8/?ulp=https%3A%2F%2Fwww.aliexpress.us%2Fitem%2F3256808308694245.html&subid=Shirts+vintage')">Get This</a>
     </div>
 
     <div class="product">
       <img src="SNITCH Plane Brown Shirt.png" alt="SNITCH Plane Brown Shirt">
       <h2>SNITCH Plane Brown Shirt</h2>
-      <p class="price"><span class="old">$20.01</span> $18.27</p>
       <p class="rating">⭐⭐⭐⭐☆</p>
-      <p>Timeless brown shade with soft washed finish for comfort.</p>
-      <a href="https://amzn.to/4lGnqre" class="btn" target="_blank">Get This</a>
+      <a href="#" class="btn" onclick="openPopup('https://amzn.to/4lGnqre','https://rzekl.com/g/1e8d11449480c609efd416525dc3e8/?ulp=https%3A%2F%2Fwww.aliexpress.us%2Fitem%2F3256809436079269.html')">Get This</a>
     </div>
 
     <div class="product">
       <img src="Plain Baby Pink Shirt.png" alt="Plain Baby Pink Shirt">
       <h2>Plain Baby Pink Shirt</h2>
-      <p class="price"><span class="old">$17.84</span> $14.84</p>
+      <p class="rating">⭐⭐⭐☆☆</p>
+      <a href="#" class="btn" onclick="openPopup('https://amzn.to/4fFBFe9','https://rzekl.com/g/1e8d11449480c609efd416525dc3e8/?ulp=https%3A%2F%2Fwww.aliexpress.us%2Fitem%2F3256803776643500.html&subid=Shirts')">Get This</a>
+    </div>
+
+    <div class="product">
+      <img src="Light Green.png" alt="Light Green">
+      <h2>Light Green</h2>
       <p class="rating">⭐⭐⭐⭐⭐</p>
-      <p>Premium weave fabric, stylish and comfortable for office wear.</p>
-      <a href="https://amzn.to/4fFBFe9" class="btn" target="_blank">Get This</a>
+      <a href="#" class="btn" onclick="openPopup('https://amzn.to/4mLWRBB','https://rzekl.com/g/1e8d11449480c609efd416525dc3e8/?ulp=https%3A%2F%2Fwww.aliexpress.us%2Fitem%2F3256808308694245.html&subid=Shirts+vintage')">Get This</a>
     </div>
 
     <div class="product">
       <img src="Luxury Blue Shirt.png" alt="Luxury Blue Shirt">
       <h2>Luxury Blue Shirt</h2>
-      <p class="price"><span class="old">$15.40</span> $11.40</p>
-      <p class="rating">⭐⭐⭐⭐⭐</p>
-      <p>Rich blue color, soft texture, and all-day comfort.</p>
-      <a href="https://amzn.to/46YrYWa" class="btn" target="_blank">Get This</a>
+      <p class="rating">⭐⭐⭐⭐☆</p>
+      <a href="#" class="btn" onclick="openPopup('https://amzn.to/46YrYWa','https://global-link.com/luxury-blue')">Get This</a>
     </div>
 
     <div class="product">
       <img src="Trendy Red Shirt.png" alt="Trendy Red Shirt">
       <h2>Trendy Red Shirt</h2>
-      <p class="price"><span class="old">$9.70</span> $5.70</p>
-      <p class="rating">⭐⭐⭐⭐☆</p>
-      <p>Bold red color with airy breathable material.</p>
-      <a href="https://amzn.to/45iOWGd" class="btn" target="_blank">Get This</a>
+      <p class="rating">⭐⭐⭐☆☆</p>
+      <a href="#" class="btn" onclick="openPopup('https://amzn.to/45iOWGd','https://global-link.com/trendy-red')">Get This</a>
     </div>
 
     <div class="product">
       <img src="Lycra Track Pants.png" alt="Lycra Track Pants">
       <h2>Lycra Track Pants</h2>
-      <p class="price"><span class="old">$9.70</span> $5.70</p>
-      <p class="rating">⭐⭐⭐⭐☆</p>
-      <p>Stretchable Lycra fabric, lightweight and perfect for workouts.</p>
-      <a href="https://amzn.to/46TKcrM" class="btn" target="_blank">Get This</a>
+      <p class="rating">⭐⭐⭐⭐⭐</p>
+      <a href="#" class="btn" onclick="openPopup('https://amzn.to/46TKcrM','https://global-link.com/lycra-pants')">Get This</a>
     </div>
 
     <div class="product">
       <img src="Light Green Solid Tapered Fit.png" alt="Light Green Solid Tapered Fit">
       <h2>Light Green Tapered Fit</h2>
-      <p class="price"><span class="old">$20.99</span> $15.99</p>
       <p class="rating">⭐⭐⭐⭐☆</p>
-      <p>Modern tapered fit with a refreshing light green color.</p>
-      <a href="https://amzn.to/45TBF76" class="btn" target="_blank">Get This</a>
+      <a href="#" class="btn" onclick="openPopup('https://amzn.to/45TBF76','https://global-link.com/light-green')">Get This</a>
     </div>
 
     <div class="product">
       <img src="Dark Blue Relaxed fit pant.png" alt="Dark Blue Relaxed Fit Pant">
       <h2>Dark Blue Relaxed Fit Pant</h2>
-      <p class="price"><span class="old">$20.99</span> $15.99</p>
-      <p class="rating">⭐⭐⭐⭐☆</p>
-      <p>Comfort fit pant with deep navy color, casual yet classy.</p>
-      <a href="https://amzn.to/45xhIlb" class="btn" target="_blank">Get This</a>
+      <p class="rating">⭐⭐⭐☆☆</p>
+      <a href="#" class="btn" onclick="openPopup('https://amzn.to/45xhIlb','https://global-link.com/dark-blue')">Get This</a>
     </div>
 
     <div class="product">
       <img src="Brown Slim Fit pant.png" alt="Brown Slim Fit Pant">
       <h2>Brown Slim Fit Pant</h2>
-      <p class="price"><span class="old">$20.81</span> $17.81</p>
-      <p class="rating">⭐⭐⭐⭐☆</p>
-      <p>Sharp slim fit with versatile brown shade, great for office & casual.</p>
-      <a href="https://amzn.to/41LCNHr" class="btn" target="_blank">Get This</a>
+      <p class="rating">⭐⭐⭐⭐⭐</p>
+      <a href="#" class="btn" onclick="openPopup('https://amzn.to/41LCNHr','https://global-link.com/brown-slim')">Get This</a>
     </div>
 
   </div>
 </div>
 
+
+<!-- Modal -->
+<div id="popup" class="modal">
+  <div class="modal-content">
+    <h2>⚡ Please get the product from my link</h2>
+    <p>Are you from India or Other Country?</p>
+    <button class="india" onclick="goLink('india')">India</button>
+    <button class="other" onclick="goLink('other')">Other Country</button>
+  </div>
+</div>
+
+<script>
+let indiaUrl="", otherUrl="";
+
+function openPopup(india, other){
+  indiaUrl = india;
+  otherUrl = other;
+  document.getElementById("popup").style.display="flex";
+}
+
+function goLink(choice){
+  if(choice==="india"){
+    window.open(indiaUrl,"_blank");
+  } else {
+    window.open(otherUrl,"_blank");
+  }
+  document.getElementById("popup").style.display="none";
+}
+
+// Close modal if user clicks outside
+window.onclick = function(e){
+  if(e.target.id==="popup"){
+    document.getElementById("popup").style.display="none";
+  }
+}
+</script>
+
 </body>
 </html>
-
-
