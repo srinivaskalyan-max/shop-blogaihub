@@ -3,122 +3,117 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Shirt Sales Page</title>
+<title>Exclusive Shirt & Pant Collection</title>
 
 <!-- Font -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-  :root{
-    --text:#ffffff;
-    --card-bg:rgba(0,0,0,0.6);
-    --header-bg:rgba(0,0,0,0.7);
-    --glow:rgba(255,140,0,0.4);
-    --btn-grad-start:#ff8a00;
-    --btn-grad-end:#e52e71;
-  }
-
   *{margin:0; padding:0; box-sizing:border-box}
   body{
     font-family:'Poppins',sans-serif;
-    color:var(--text);
-    background:#000;
-    overflow-x:hidden;
+    background:#f7f7f7;
+    color:#333;
   }
-
-  .background{
-    background:url('back.png') no-repeat center center fixed;
-    background-size:cover;
-    position:fixed; inset:0;
-    z-index:-1;
-    transition:opacity .3s ease, filter .3s ease;
-  }
-  body.scrolled .background{opacity:.85; filter:contrast(0.95) saturate(1.05)}
 
   header{
-    position:sticky; top:0; z-index:100;
-    background:var(--header-bg);
-    backdrop-filter:blur(6px);
-    padding:14px 5%;
+    background:linear-gradient(90deg,#ff8a00,#e52e71);
+    padding:20px 5%;
+    color:white;
     text-align:center;
-    box-shadow:0 4px 15px rgba(0,0,0,.35);
   }
-  header h1{font-size:24px}
-  header p{font-size:14px; opacity:.85}
+  header h1{font-size:26px; font-weight:700;}
+  header p{font-size:14px; margin-top:5px; opacity:.9;}
+
+  /* 🔹 Filter Bar */
+  #filters {
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:14px;
+  }
+  .filter-btn {
+    padding:6px 16px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+    background:#fff;
+    color:#333;
+    font-weight:600;
+    box-shadow:0 2px 6px rgba(0,0,0,0.15);
+    transition:all .2s ease;
+  }
+  .filter-btn:hover {
+    background:#f1f1f1;
+    transform:scale(1.05);
+  }
+  .filter-btn.active {
+    background:#e52e71;
+    color:#fff;
+  }
 
   .container{padding:34px 5%}
   .products{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:28px;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:24px;
   }
 
   .product{
-    background:var(--card-bg);
+    background:#fff;
     border-radius:16px;
     padding:20px;
     text-align:center;
-    backdrop-filter:blur(5px);
+    box-shadow:0 4px 18px rgba(0,0,0,0.08);
     transition:transform .25s ease, box-shadow .25s ease;
   }
   .product:hover{
     transform:translateY(-6px);
-    box-shadow:0 12px 42px var(--glow);
+    box-shadow:0 12px 28px rgba(0,0,0,0.12);
   }
 
   .product img{
     width:100%;
-    max-width:240px;
+    max-width:220px;
     border-radius:12px;
-    animation:float 3s ease-in-out infinite;
-    transition:transform .25s ease;
   }
-  .product:hover img{transform:scale(1.06)}
-  @keyframes float{0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)}}
-
-  .product h2{margin:14px 0 6px; font-size:18px}
-  .price{font-size:16px; margin:4px 0;}
-  .price .old{text-decoration:line-through; opacity:.6; margin-right:8px}
-  .rating{font-size:14px; color:gold; margin-bottom:10px}
+  .product h2{margin:14px 0 8px; font-size:18px; font-weight:600;}
+  .rating{font-size:15px; color:gold; margin-bottom:10px}
 
   .btn{
     display:inline-block;
     margin-top:10px;
     padding:10px 20px;
-    background:linear-gradient(90deg,var(--btn-grad-start),var(--btn-grad-end));
-    color:#fff; text-decoration:none; border-radius:26px; font-weight:700;
-    transition:transform .18s ease;
+    background:#e52e71;
+    color:#fff; text-decoration:none; border-radius:26px; font-weight:600;
+    transition:transform .18s ease, background .2s;
     cursor:pointer;
   }
-  .btn:hover{transform:scale(1.08)}
+  .btn:hover{transform:scale(1.08); background:#c21c5e}
 
   /* Modal Popup */
   .modal{
     display:none;
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,0.7);
-    backdrop-filter:blur(4px);
+    background:rgba(0,0,0,0.65);
     z-index:1000;
     align-items:center;
     justify-content:center;
   }
   .modal-content{
-    background:#111;
+    background:#fff;
     padding:25px;
     border-radius:18px;
     text-align:center;
     max-width:340px;
-    box-shadow:0 8px 30px rgba(0,0,0,0.6);
+    box-shadow:0 8px 30px rgba(0,0,0,0.4);
     animation:pop .3s ease;
   }
   @keyframes pop{0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}
-  .modal h2{
-    margin-bottom:12px;
-    font-size:20px;
-    color:#ffcc00;
-  }
-  .modal p{margin-bottom:20px; font-size:15px; color:#ddd}
+  .modal h2{margin-bottom:12px; font-size:20px; color:#e52e71;}
+  .modal p{margin-bottom:20px; font-size:15px; color:#555}
   .modal button{
     margin:6px;
     padding:10px 18px;
@@ -132,121 +127,150 @@
   .modal .india:hover{background:#218838;}
   .modal .other{background:#007bff; color:#fff;}
   .modal .other:hover{background:#0056b3;}
+
+  /*popup for other country */
+   #popup-msg {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(90deg, #ff8a00, #e52e71);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 9999;
+    animation: fadeIn 1s ease-in-out;
+   }
+    /* Smooth fade-in animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 </style>
 </head>
 <body>
 
-<div class="background"></div>
-
 <header>
   <h1>Exclusive Shirt & Pant Collection</h1>
   <p>Scroll down to explore our best designs</p>
-</header>
 
+  <!-- 🔹 Filter Buttons -->
+  <div id="filters">
+    <button class="filter-btn active" onclick="filterProducts('all', this)">All</button>
+    <button class="filter-btn" onclick="filterProducts('amazon', this)">Amazon</button>
+    <button class="filter-btn" onclick="filterProducts('alibaba', this)">Alibaba</button>
+    <button class="filter-btn" onclick="filterProducts('flipkart', this)">Flipkart</button>
+    <button class="filter-btn" onclick="filterProducts('meesho', this)">Meesho</button>
+  </div>
+</header>
+<div id="popup-msg">
+  🌍 If you are not from India, please choose <b>Alibaba</b>
+</div>
 <div class="container"> 
   <div id="products" class="products">
 
-    <div class="product">
-      <img src="GAP Plane Blue Shirt.png" alt="GAP Plain Blue Shirt">
-      <h2>GAP Plain Blue Shirt</h2>
-      <p class="rating">⭐⭐⭐⭐☆</p>
-      <a href="#" class="btn" onclick="openPopup('https://amzn.to/41BSXTO','https://fas.st/kdtCRm')">Get This</a>
-    </div>
+   <div class="product">
+  <img src="GAP Plane Blue Shirt.png" alt="GAP Plain Blue Shirt">
+  <h2>GAP Plain Blue Shirt</h2>
+  <p class="rating">⭐⭐⭐⭐☆</p>
+  <a href="#" class="btn" onclick="openPopup('https://amzn.to/41BSXTO','https://fas.st/kdtCRm')">Get This</a>
+</div>
 
-    <div class="product">
-      <img src="White Solid.png" alt="White Solid Shirt">
-      <h2>White Solid Shirt</h2>
-      <p class="rating">⭐⭐⭐⭐⭐</p>
-      <a href="#" class="btn" onclick="openPopup('https://amzn.to/4oFaYdQ','https://global-link.com/white-solid')">Get This</a>
-    </div>
+<div class="product">
+  <img src="White Solid.png" alt="White Solid Shirt">
+  <h2>White Solid Shirt</h2>
+  <p class="rating">⭐⭐⭐⭐⭐</p>
+  <a href="#" class="btn" onclick="openPopup('https://amzn.to/4oFaYdQ','https://global-link.com/white-solid')">Get This</a>
+</div>
 
-    <div class="product">
-      <img src="Cream colour.png" alt="Cream colour">
-      <h2>Cream colour</h2>
-      <p class="rating">⭐⭐⭐⭐☆</p>
-      <a href="#" class="btn" onclick="openPopup('https://amzn.to/45Gfb8y','https://rzekl.com/g/1e8d11449480c609efd416525dc3e8/?ulp=https%3A%2F%2Fwww.aliexpress.us%2Fitem%2F3256807300401025.html&subid=Shirts+vin')">Get This</a>
-    </div>
+<div class="product">
+  <img src="Cream colour.png" alt="Cream Colour Shirt">
+  <h2>Cream Colour Shirt</h2>
+  <p class="rating">⭐⭐⭐⭐☆</p>
+  <a href="#" class="btn" onclick="openPopup('https://amzn.to/45Gfb8y','https://rzekl.com/g/1e8d11449480c609efd416525dc3e8/?ulp=https%3A%2F%2Fwww.aliexpress.us%2Fitem%2F3256807300401025.html&subid=Shirts+vin')">Get This</a>
+</div>
 
-    <div class="product">
-      <img src="denim shirt.png" alt="Denim Shirt">
-      <h2>Denim Shirt</h2>
-      <p class="rating">⭐⭐⭐☆☆</p>
-      <a href="#" class="btn" onclick="openPopup('https://amzn.to/4msIaDS','https://rzekl.com/g/1e8d11449480c609efd416525dc3e8/?ulp=https%3A%2F%2Fwww.aliexpress.us%2Fitem%2F3256805649720186.html&subid=Shirts+vintage')">Get This</a>
-    </div>
+<div class="product">
+  <img src="denim shirt.png" alt="Denim Shirt">
+  <h2>Denim Shirt</h2>
+  <p class="rating">⭐⭐⭐☆☆</p>
+  <a href="#" class="btn" onclick="openPopup('https://amzn.to/4msIaDS','https://rzekl.com/g/1e8d11449480c609efd416525dc3e8/?ulp=https%3A%2F%2Fwww.aliexpress.us%2Fitem%2F3256805649720186.html&subid=Shirts+vintage')">Get This</a>
+</div>
 
-    <div class="product">
-      <img src="Olive Green.png" alt="Olive Green">
-      <h2>Olive Green</h2>
-      <p class="rating">⭐⭐⭐⭐⭐</p>
-      <a href="#" class="btn" onclick="openPopup('https://amzn.to/4mrHdf8','https://rzekl.com/g/1e8d11449480c609efd416525dc3e8/?ulp=https%3A%2F%2Fwww.aliexpress.us%2Fitem%2F3256808308694245.html&subid=Shirts+vintage')">Get This</a>
-    </div>
+<div class="product">
+  <img src="Olive Green.png" alt="Olive Green Shirt">
+  <h2>Olive Green Shirt</h2>
+  <p class="rating">⭐⭐⭐⭐⭐</p>
+  <a href="#" class="btn" onclick="openPopup('https://amzn.to/4mrHdf8','https://rzekl.com/g/1e8d11449480c609efd416525dc3e8/?ulp=https%3A%2F%2Fwww.aliexpress.us%2Fitem%2F3256808308694245.html&subid=Shirts+vintage')">Get This</a>
+</div>
 
-    <div class="product">
-      <img src="SNITCH Plane Brown Shirt.png" alt="SNITCH Plane Brown Shirt">
-      <h2>SNITCH Plane Brown Shirt</h2>
-      <p class="rating">⭐⭐⭐⭐☆</p>
-      <a href="#" class="btn" onclick="openPopup('https://amzn.to/4lGnqre','https://rzekl.com/g/1e8d11449480c609efd416525dc3e8/?ulp=https%3A%2F%2Fwww.aliexpress.us%2Fitem%2F3256809436079269.html')">Get This</a>
-    </div>
+<div class="product">
+  <img src="SNITCH Plane Brown Shirt.png" alt="SNITCH Plain Brown Shirt">
+  <h2>SNITCH Plain Brown Shirt</h2>
+  <p class="rating">⭐⭐⭐⭐☆</p>
+  <a href="#" class="btn" onclick="openPopup('https://amzn.to/4lGnqre','https://rzekl.com/g/1e8d11449480c609efd416525dc3e8/?ulp=https%3A%2F%2Fwww.aliexpress.us%2Fitem%2F3256809436079269.html')">Get This</a>
+</div>
 
-    <div class="product">
-      <img src="Plain Baby Pink Shirt.png" alt="Plain Baby Pink Shirt">
-      <h2>Plain Baby Pink Shirt</h2>
-      <p class="rating">⭐⭐⭐☆☆</p>
-      <a href="#" class="btn" onclick="openPopup('https://amzn.to/4fFBFe9','https://rzekl.com/g/1e8d11449480c609efd416525dc3e8/?ulp=https%3A%2F%2Fwww.aliexpress.us%2Fitem%2F3256803776643500.html&subid=Shirts')">Get This</a>
-    </div>
+<div class="product">
+  <img src="Plain Baby Pink Shirt.png" alt="Plain Baby Pink Shirt">
+  <h2>Plain Baby Pink Shirt</h2>
+  <p class="rating">⭐⭐⭐☆☆</p>
+  <a href="#" class="btn" onclick="openPopup('https://amzn.to/4fFBFe9','https://rzekl.com/g/1e8d11449480c609efd416525dc3e8/?ulp=https%3A%2F%2Fwww.aliexpress.us%2Fitem%2F3256803776643500.html&subid=Shirts')">Get This</a>
+</div>
 
-    <div class="product">
-      <img src="Light Green.png" alt="Light Green">
-      <h2>Light Green</h2>
-      <p class="rating">⭐⭐⭐⭐⭐</p>
-      <a href="#" class="btn" onclick="openPopup('https://amzn.to/4mLWRBB','https://rzekl.com/g/1e8d11449480c609efd416525dc3e8/?ulp=https%3A%2F%2Fwww.aliexpress.us%2Fitem%2F3256808308694245.html&subid=Shirts+vintage')">Get This</a>
-    </div>
+<div class="product">
+  <img src="Light Green.png" alt="Light Green Shirt">
+  <h2>Light Green Shirt</h2>
+  <p class="rating">⭐⭐⭐⭐⭐</p>
+  <a href="#" class="btn" onclick="openPopup('https://amzn.to/4mLWRBB','https://rzekl.com/g/1e8d11449480c609efd416525dc3e8/?ulp=https%3A%2F%2Fwww.aliexpress.us%2Fitem%2F3256808308694245.html&subid=Shirts+vintage')">Get This</a>
+</div>
 
-    <div class="product">
-      <img src="Luxury Blue Shirt.png" alt="Luxury Blue Shirt">
-      <h2>Luxury Blue Shirt</h2>
-      <p class="rating">⭐⭐⭐⭐☆</p>
-      <a href="#" class="btn" onclick="openPopup('https://amzn.to/46YrYWa','https://global-link.com/luxury-blue')">Get This</a>
-    </div>
+<div class="product">
+  <img src="Luxury Blue Shirt.png" alt="Luxury Blue Shirt">
+  <h2>Luxury Blue Shirt</h2>
+  <p class="rating">⭐⭐⭐⭐☆</p>
+  <a href="#" class="btn" onclick="openPopup('https://amzn.to/46YrYWa','https://global-link.com/luxury-blue')">Get This</a>
+</div>
 
-    <div class="product">
-      <img src="Trendy Red Shirt.png" alt="Trendy Red Shirt">
-      <h2>Trendy Red Shirt</h2>
-      <p class="rating">⭐⭐⭐☆☆</p>
-      <a href="#" class="btn" onclick="openPopup('https://amzn.to/45iOWGd','https://global-link.com/trendy-red')">Get This</a>
-    </div>
+<div class="product">
+  <img src="Trendy Red Shirt.png" alt="Trendy Red Shirt">
+  <h2>Trendy Red Shirt</h2>
+  <p class="rating">⭐⭐⭐☆☆</p>
+  <a href="#" class="btn" onclick="openPopup('https://amzn.to/45iOWGd','https://global-link.com/trendy-red')">Get This</a>
+</div>
 
-    <div class="product">
-      <img src="Lycra Track Pants.png" alt="Lycra Track Pants">
-      <h2>Lycra Track Pants</h2>
-      <p class="rating">⭐⭐⭐⭐⭐</p>
-      <a href="#" class="btn" onclick="openPopup('https://amzn.to/46TKcrM','https://global-link.com/lycra-pants')">Get This</a>
-    </div>
+<div class="product">
+  <img src="Lycra Track Pants.png" alt="Lycra Track Pants">
+  <h2>Lycra Track Pants</h2>
+  <p class="rating">⭐⭐⭐⭐⭐</p>
+  <a href="#" class="btn" onclick="openPopup('https://amzn.to/46TKcrM','https://global-link.com/lycra-pants')">Get This</a>
+</div>
 
-    <div class="product">
-      <img src="Light Green Solid Tapered Fit.png" alt="Light Green Solid Tapered Fit">
-      <h2>Light Green Tapered Fit</h2>
-      <p class="rating">⭐⭐⭐⭐☆</p>
-      <a href="#" class="btn" onclick="openPopup('https://amzn.to/45TBF76','https://global-link.com/light-green')">Get This</a>
-    </div>
+<div class="product">
+  <img src="Light Green Solid Tapered Fit.png" alt="Light Green Solid Tapered Fit Pant">
+  <h2>Light Green Tapered Fit Pant</h2>
+  <p class="rating">⭐⭐⭐⭐☆</p>
+  <a href="#" class="btn" onclick="openPopup('https://amzn.to/45TBF76','https://global-link.com/light-green')">Get This</a>
+</div>
 
-    <div class="product">
-      <img src="Dark Blue Relaxed fit pant.png" alt="Dark Blue Relaxed Fit Pant">
-      <h2>Dark Blue Relaxed Fit Pant</h2>
-      <p class="rating">⭐⭐⭐☆☆</p>
-      <a href="#" class="btn" onclick="openPopup('https://amzn.to/45xhIlb','https://global-link.com/dark-blue')">Get This</a>
-    </div>
+<div class="product">
+  <img src="Dark Blue Relaxed fit pant.png" alt="Dark Blue Relaxed Fit Pant">
+  <h2>Dark Blue Relaxed Fit Pant</h2>
+  <p class="rating">⭐⭐⭐☆☆</p>
+  <a href="#" class="btn" onclick="openPopup('https://amzn.to/45xhIlb','https://global-link.com/dark-blue')">Get This</a>
+</div>
 
-    <div class="product">
-      <img src="Brown Slim Fit pant.png" alt="Brown Slim Fit Pant">
-      <h2>Brown Slim Fit Pant</h2>
-      <p class="rating">⭐⭐⭐⭐⭐</p>
-      <a href="#" class="btn" onclick="openPopup('https://amzn.to/41LCNHr','https://global-link.com/brown-slim')">Get This</a>
-    </div>
+<div class="product">
+  <img src="Brown Slim Fit pant.png" alt="Brown Slim Fit Pant">
+  <h2>Brown Slim Fit Pant</h2>
+  <p class="rating">⭐⭐⭐⭐⭐</p>
+  <a href="#" class="btn" onclick="openPopup('https://amzn.to/41LCNHr','https://global-link.com/brown-slim')">Get This</a>
+</div>
 
   </div>
 </div>
-
 
 <!-- Modal -->
 <div id="popup" class="modal">
@@ -263,7 +287,7 @@ let indiaUrl="", otherUrl="";
 
 function openPopup(india, other){
   indiaUrl = india;
-  otherUrl = other;
+  otherUrl = other || india; // if no second link, fallback to same
   document.getElementById("popup").style.display="flex";
 }
 
@@ -281,6 +305,40 @@ window.onclick = function(e){
   if(e.target.id==="popup"){
     document.getElementById("popup").style.display="none";
   }
+}
+
+// 🔹 Filtering Logic
+function filterProducts(store, btn) {
+  const products = document.querySelectorAll('.product');
+  
+  products.forEach(prod => {
+    const btnEl = prod.querySelector('.btn');
+    const onClick = btnEl.getAttribute('onclick');
+    
+    const urls = onClick.match(/'(.*?)'/g)?.map(u => u.replace(/'/g, ""));
+    const indiaUrl = urls ? urls[0] : "";
+    const otherUrl = urls ? urls[1] : "";
+    const allLinks = indiaUrl + " " + otherUrl;
+
+    let show = false;
+    if (store === "all") {
+      show = true;
+    } else if (store === "amazon" && allLinks.includes("amzn.to")) {
+      show = true;
+    } else if (store === "alibaba" && (allLinks.includes("alibaba") || allLinks.includes("aliexpress"))) {
+      show = true;
+    } else if (store === "flipkart" && allLinks.includes("flipkart")) {
+      show = true;
+    } else if (store === "meesho" && allLinks.includes("meesho")) {
+      show = true;
+    }
+
+    prod.style.display = show ? "block" : "none";
+  });
+
+  // Highlight active button
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
 }
 </script>
 
